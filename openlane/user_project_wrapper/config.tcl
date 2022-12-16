@@ -54,7 +54,7 @@ set ::env(VERILOG_FILES) "\
 ## Clock configurations
 set ::env(CLOCK_PORT) "wb_clk_i"
 
-set ::env(CLOCK_PERIOD) "15"
+set ::env(CLOCK_PERIOD) "20"
 #set ::env(BASE_SDC_FILE) $script_dir/base.sdc
 
 ### PDN

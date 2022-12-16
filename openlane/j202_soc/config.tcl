@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2020 Efabless Corporation
+# SPDX-FileCopyrightText: 2022 SH CONSULTING K.K.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,14 +13,15 @@
 # limitations under the License.
 # SPDX-License-Identifier: Apache-2.0
 
-set script_dir [file dirname [file normalize [info script]]]
 source $::env(CARAVEL_ROOT)/openlane/user_project_wrapper/fixed_wrapper_cfgs.tcl
 source $::env(CARAVEL_ROOT)/openlane/user_project_wrapper/default_wrapper_cfgs.tcl
 set ::env(STD_CELL_LIBRARY) "sky130_fd_sc_hd"
 
+set script_dir $::env(DESIGN_DIR)/../j202_soc
+
 set ::env(DESIGN_NAME) j202_soc_core_wrapper
 set ::env(CLOCK_PORT) "wb_clk_i"
-set ::env(CLOCK_PERIOD) "15"
+set ::env(CLOCK_PERIOD) "20"
 
 set ::env(DESIGN_IS_CORE) 1
 
@@ -40,7 +41,7 @@ set ::env(VDD_PIN) "vccd1"
 set ::env(GND_PIN) "vssd1"
 
 set ::env(PL_SKIP_INITIAL_PLACEMENT) 1
-set ::env(PL_TARGET_DENSITY) 0.10
+set ::env(PL_TARGET_DENSITY) 0.30
 set ::env(PL_RESIZER_HOLD_SLACK_MARGIN)  0.3
 set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.3
 
@@ -87,14 +88,14 @@ set ::env(MAGIC_WRITE_FULL_LEF) 0
 set ::env(SYNTH_DEFINES) "SYNTHESIS"
 set ::env(SYNTH_READ_BLACKBOX_LIB) 1
 
-set ::env(VERILOG_INCLUDE_DIRS) [glob $script_dir/../../../verilog/rtl/j202_soc]
+set ::env(VERILOG_INCLUDE_DIRS) [glob $::env(CARAVEL_ROOT)/../verilog/rtl/j202_soc]
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	[glob $script_dir/../../../verilog/rtl/j202_soc_gl/*.v]"
+	[glob $::env(CARAVEL_ROOT)/../verilog/rtl/j202_soc_gl/*.v]"
 
 ## SDC
-#set ::env(IO_PCT)     0.2
-#set ::env(BASE_SDC_FILE) $script_dir/../../../openlane/j202_soc/base.sdc
+set ::env(IO_PCT)     0.3
+#set ::env(BASE_SDC_FILE) $script_dir/base.sdc
 
 ## Internal Macros
 ### Black-box verilog and views
@@ -116,16 +117,16 @@ set ::env(EXTRA_LIBS) "\
   $::env(PDK_ROOT)/$::env(PDK)/libs.ref/sky130_sram_macros/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
 
 ### Macro Placement
-set ::env(MACRO_PLACEMENT_CFG) $script_dir/../../../openlane/j202_soc/macro.cfg
+set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 
 ### Macro PDN Connections
-source $script_dir/../../../openlane/j202_soc/macro_pdn.tcl
+source $script_dir/macro_pdn.tcl
 
 ### Obstruction over SRAMs
-source $script_dir/../../../openlane/j202_soc/macro_obs.tcl
+source $script_dir/macro_obs.tcl
 
 # Pin order
-set ::env(FP_PIN_ORDER_CFG) $script_dir/../../../openlane/j202_soc/pin_order.cfg
+set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
 set ::env(CELL_PAD) 4
 

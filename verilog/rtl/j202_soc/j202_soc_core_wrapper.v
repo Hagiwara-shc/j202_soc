@@ -57,64 +57,11 @@ module j202_soc_core_wrapper
 
 `ifndef J202_SOC_CORE_EMPTY
 //------------------------------------------------------------------------------
-// Clock and Reset to j202_soc_core
-wire clk;
-wire rst_n;
-reg  [31:0] reg_val;  // Wishbone register value
-
-assign clk   = wb_clk_i;
-assign rst_n = reg_val[0];
-
-//------------------------------------------------------------------------------
-// Wishbone slave port & register
-wire        valid;
-wire [3:0]  wstrb;
-reg         ready;
-
-assign valid = wbs_cyc_i & wbs_stb_i; 
-assign wstrb = wbs_sel_i & {4{wbs_we_i}};
-assign wbs_ack_o = ready;
-assign wbs_dat_o = reg_val;
-
-always @(posedge clk) begin
-  if (wb_rst_i) begin
-    reg_val <= 32'h00000000;
-    ready <= 1'b0;
-  end 
-  else begin
-    if (valid && !ready) begin
-      ready <= 1'b1;
-      if (wstrb[0]) reg_val[7:0]   <= wbs_dat_i[7:0];
-      if (wstrb[1]) reg_val[15:8]  <= wbs_dat_i[15:8];
-      if (wstrb[2]) reg_val[23:16] <= wbs_dat_i[23:16];
-      if (wstrb[3]) reg_val[31:24] <= wbs_dat_i[31:24];
-    end 
-    else begin
-      ready <= 1'b0;
-    end 
-  end 
-end 
-
-//------------------------------------------------------------------------------
-// Logic Analyzer Signals
-// la_data_out[127:32] <- 0
-//            [ 31: 0] <- gpio_o[31:0]
-assign la_data_out[127:32] = 96'd0;
-
-wire [127:0] la_data_input; // [127:23] -> not in use
-                            // [ 31:22] -> gpio_i[31:22]
-assign la_data_input = ~la_oenb & la_data_in;
-
-//------------------------------------------------------------------------------
-// IRQ
-assign user_irq = 3'b000;
-
-//------------------------------------------------------------------------------
-// IO assignment
-wire [1:0]  md_boot;    // input
 wire [31:0] gpio_i;     // input
 wire [31:0] gpio_o;     // output
 wire [31:0] gpio_en_o;  // output
+wire        start_n_i;  // input
+wire [1:0]  md_boot_i;  // input
 wire        pwm_posa_o; // output
 wire        pwm_nega_o; // output
 wire        pwm_posb_o; // output
@@ -133,9 +80,14 @@ wire [3:0]  qspi_dat_o; // output
 wire [3:0]  qspi_dat_oe;// output
 wire [3:0]  qspi_dat_i; // input
 
+wire [127:0] la_data_input; // logic analyzer input (qualified)
+
+//------------------------------------------------------------------------------
+// IO assignment
 // Input
-assign md_boot           = io_in[15:14];
-assign gpio_i            = {la_data_input[31:18], io_in[37:26], io_in[7], io_in[4:0]};
+assign gpio_i            = {la_data_input[31:17], io_in[36:26], io_in[7], io_in[4:0]};
+assign start_n_i         = io_in[37];
+assign md_boot_i         = io_in[15:14];
 assign over_cur_i        = io_in[25];
 assign hall_i            = io_in[24:22];
 assign uart_rxd_i        = io_in[5];
@@ -143,9 +95,8 @@ assign uart_cts_i        = 1'b0;
 assign qspi_dat_i        = io_in[13:10];
 
 // Output
-assign la_data_out[31:0] = gpio_o[31:0];
-
-assign io_out[37:26]     = gpio_o[17:6];
+assign io_out[37]        = 1'b0;
+assign io_out[36:26]     = gpio_o[16:6];
 assign io_out[25:22]     = 4'b0000;
 assign io_out[21]        = pwm_negc_o;
 assign io_out[20]        = pwm_posc_o;
@@ -163,7 +114,8 @@ assign io_out[5]         = 1'b0;
 assign io_out[4:0]       = gpio_o[4:0];
 
 // Output enable (low-active)
-assign io_oeb[37:26]     = ~gpio_en_o[17:6];// GPIO[17:6]
+assign io_oeb[37]        = 1'b1;            // START_n
+assign io_oeb[36:26]     = ~gpio_en_o[16:6];// GPIO[16:6]
 assign io_oeb[25:22]     = 4'b1111;         // OVER_CURR, HALL[2:0]
 assign io_oeb[21:16]     = 6'b000000;       // PWM_{a,b,c}_{pos,neg}
 assign io_oeb[15:14]     = 2'b11;           // MD_boot[1:0]
@@ -175,11 +127,71 @@ assign io_oeb[5]         = 1'b1;            // UART_rx
 assign io_oeb[4:0]       = ~gpio_en_o[4:0]; // GPIO[4:0]
 
 //------------------------------------------------------------------------------
+// Logic Analyzer Signals
+assign la_data_out   = {96'd0, gpio_o[31:0]};
+assign la_data_input = ~la_oenb & la_data_in;
+
+//------------------------------------------------------------------------------
+// Synchronizer
+reg  [1:0]  start_n_reg;
+
+always @(posedge wb_clk_i) begin
+  if (wb_rst_i) begin
+    start_n_reg <= 2'b11;
+  end else begin
+    start_n_reg <= {start_n_reg[0], start_n_i};
+  end
+end
+
+//------------------------------------------------------------------------------
+// Wishbone slave port & register
+wire        valid;
+wire [3:0]  wstrb;
+reg         ready;
+reg  [31:0] reg_val;  // Wishbone slave register
+
+assign valid = wbs_cyc_i & wbs_stb_i; 
+assign wstrb = wbs_sel_i & {4{wbs_we_i}};
+assign wbs_ack_o = ready;
+assign wbs_dat_o = reg_val;
+
+always @(posedge wb_clk_i) begin
+  if (wb_rst_i) begin
+    reg_val <= 32'h00000000;
+    ready <= 1'b0;
+  end 
+  else if (~start_n_reg[1]) begin
+    reg_val[0] <= 1'b1;
+  end
+  else begin
+    if (valid && !ready) begin
+      ready <= 1'b1;
+      if (wstrb[0]) reg_val[7:0]   <= wbs_dat_i[7:0];
+      if (wstrb[1]) reg_val[15:8]  <= wbs_dat_i[15:8];
+      if (wstrb[2]) reg_val[23:16] <= wbs_dat_i[23:16];
+      if (wstrb[3]) reg_val[31:24] <= wbs_dat_i[31:24];
+    end 
+    else begin
+      ready <= 1'b0;
+    end 
+  end 
+end 
+
+//------------------------------------------------------------------------------
+// IRQ
+assign user_irq = 3'b000;
+
+//------------------------------------------------------------------------------
+// Reset to j202_soc_core
+wire rst_n;
+assign rst_n = reg_val[0];
+
+//------------------------------------------------------------------------------
 // j202_soc_core
 j202_soc_core j202_soc_core (
-    .clk             (clk),
+    .clk             (wb_clk_i),
     .rst_n           (rst_n),
-    .md_boot         (md_boot),
+    .md_boot         (md_boot_i),
     //---------------------------------
     //GPIO
     .gpio_i          (gpio_i),
