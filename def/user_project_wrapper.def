@@ -6001,8 +6001,8 @@ NETS 637 ;
     - la_data_in[47] ( PIN la_data_in[47] ) ( j202_soc_core_wrapper la_data_in[47] ) + USE SIGNAL
       + ROUTED met2 ( 1463030 1700 0 ) ( * 15300 0 ) ;
     - la_data_in[48] ( PIN la_data_in[48] ) ( j202_soc_core_wrapper la_data_in[48] ) + USE SIGNAL
-      + ROUTED met2 ( 1479590 1700 ) ( 1480510 * 0 )
-      NEW met2 ( 1479590 1700 ) ( * 15300 0 ) ;
+      + ROUTED met2 ( 1480510 1700 0 ) ( * 15300 )
+      NEW met2 ( 1479590 15300 0 ) ( 1480510 * ) ;
     - la_data_in[49] ( PIN la_data_in[49] ) ( j202_soc_core_wrapper la_data_in[49] ) + USE SIGNAL
       + ROUTED met2 ( 1498450 1700 0 ) ( * 15300 )
       NEW met2 ( 1496150 15300 0 ) ( 1498450 * ) ;

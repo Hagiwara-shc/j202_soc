@@ -41,7 +41,7 @@ set ::env(VDD_PIN) "vccd1"
 set ::env(GND_PIN) "vssd1"
 
 set ::env(PL_SKIP_INITIAL_PLACEMENT) 1
-set ::env(PL_TARGET_DENSITY) 0.30
+set ::env(PL_TARGET_DENSITY) 0.15
 set ::env(PL_RESIZER_HOLD_SLACK_MARGIN)  0.3
 set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.3
 
