@@ -1,0 +1,1875 @@
+// SPDX-FileCopyrightText: 2022 SH CONSULTING K.K.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
+
+           16'b0000_????_0000_0010 : begin
+              // synopsys translate_off
+              mnem = "STC SR,Rn";
+              // synopsys translate_on
+              regop.other <= other_SR;
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_Rb;
+              regop.Rn <= op[11:8];
+           end
+           16'b0000_????_0001_0010 : begin
+              // synopsys translate_off
+              mnem = "STC GBR,Rn";
+              // synopsys translate_on
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_Rb;
+              regop.Rn <= op[11:8];
+           end
+           16'b0000_????_0010_0010 : begin
+              // synopsys translate_off
+              mnem = "STC VBR,Rn";
+              // synopsys translate_on
+              regop.other <= other_VBR;
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_Rb;
+              regop.Rn <= op[11:8];
+           end
+           16'b0000_????_0000_0011 : begin
+              // synopsys translate_off
+              mnem = "BSRF Rm";
+              // synopsys translate_on
+              regop.other <= other_PC;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC_PR;
+              exuop.EXU <= EXU_ADD_PC;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+           end
+           16'b0000_????_0010_0011 : begin
+              // synopsys translate_off
+              mnem = "BRAF Rm";
+              // synopsys translate_on
+              regop.other <= other_PC;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC;
+              exuop.EXU <= EXU_ADD_PC;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+           end
+           16'b0000_????_????_0100 : begin
+              // synopsys translate_off
+              mnem = "MOV.B Rm,@(R0,Rn)";
+              // synopsys translate_on
+              regop.other <= other_R0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_Rm;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STB;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0000_????_????_0101 : begin
+              // synopsys translate_off
+              mnem = "MOV.W Rm,@(R0,Rn)";
+              // synopsys translate_on
+              regop.other <= other_R0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_Rm;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STW;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0000_????_????_0110 : begin
+              // synopsys translate_off
+              mnem = "MOV.L Rm,@(R0,Rn)";
+              // synopsys translate_on
+              regop.other <= other_R0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_Rm;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0000_????_????_0111 : begin
+              // synopsys translate_off
+              mnem = "MUL.L Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+              macop.MAC <= MAC_MULL;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0000_0000_0000_1000 : begin
+              // synopsys translate_off
+              mnem = "CLRT";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CLRT;
+           end
+           16'b0000_0000_0001_1000 : begin
+              // synopsys translate_off
+              mnem = "SETT";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_SETT;
+           end
+           16'b0000_0000_0010_1000 : begin
+              // synopsys translate_off
+              mnem = "CLRMAC";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+              macop.MAC <= MAC_CLRMAC;
+           end
+           16'b0000_0000_0000_1001 : begin
+              // synopsys translate_off
+              mnem = "NOP";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+           end
+           16'b0000_0000_0001_1001 : begin
+              // synopsys translate_off
+              mnem = "DIV0U";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_DIV0U;
+           end
+           16'b0000_????_0010_1001 : begin
+              // synopsys translate_off
+              mnem = "MOVT Rn";
+              // synopsys translate_on
+              regop.other <= other_SR;
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_MOVT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0000_????_0000_1010 : begin
+              // synopsys translate_off
+              mnem = "STS MACH,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_MAC;
+              macop.MAC <= MAC_STMACH;
+              regop.Rn <= op[11:8];
+           end
+           16'b0000_????_0001_1010 : begin
+              // synopsys translate_off
+              mnem = "STS MACL,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_MAC;
+              macop.MAC <= MAC_STMACL;
+              regop.Rn <= op[11:8];
+           end
+           16'b0000_????_0010_1010 : begin
+              // synopsys translate_off
+              mnem = "STS PR,Rn";
+              // synopsys translate_on
+              regop.other <= other_PR;
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_Rb;
+              regop.Rn <= op[11:8];
+           end
+           16'b0000_0000_0000_1011 : begin
+              // synopsys translate_off
+              mnem = "RTS";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.other <= other_PR;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b0000_0000_0001_1011 : begin
+              // synopsys translate_off
+              mnem = "SLEEP";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= multi;
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+           end
+           16'b0000_0000_0010_1011 : begin
+              // synopsys translate_off
+              mnem = "RTE";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= RTE2;
+              regop.imm <= 4;
+              regop.other <= other_SP;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_SP;
+              regop.Wm <= Wm_PC;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Rb;
+           end
+           16'b0000_????_????_1100 : begin
+              // synopsys translate_off
+              mnem = "MOV.B @(R0,Rm),Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0000_????_????_1101 : begin
+              // synopsys translate_off
+              mnem = "MOV.W @(R0,Rm),Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDW;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0000_????_????_1110 : begin
+              // synopsys translate_off
+              mnem = "MOV.L @(R0,Rm),Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0000_????_????_1111 : begin
+              // synopsys translate_off
+              mnem = "MAC.L @Rm+,@Rn+";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= MACL;
+              regop.imm <= 4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Ra;
+              macop.MAC <= MAC_MAC0L;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0001_????_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.L Rm,@(disp,Rn)";
+              // synopsys translate_on
+              regop.imm <= {{7{1'b0}},op[3:0],2'b00}; // ze4x4
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_Rm;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_0000 : begin
+              // synopsys translate_off
+              mnem = "MOV.B Rm,@Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_Rm;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STB;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_0001 : begin
+              // synopsys translate_off
+              mnem = "MOV.W Rm,@Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_Rm;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STW;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_0010 : begin
+              // synopsys translate_off
+              mnem = "MOV.L Rm,@Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_Rm;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STL;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_0100 : begin
+              // synopsys translate_off
+              mnem = "MOV.B Rm,@-Rn";
+              // synopsys translate_on
+              regop.imm <= -1;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_Rm;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STB;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_0101 : begin
+              // synopsys translate_off
+              mnem = "MOV.W Rm,@-Rn";
+              // synopsys translate_on
+              regop.imm <= -2;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_Rm;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STW;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_0110 : begin
+              // synopsys translate_off
+              mnem = "MOV.L Rm,@-Rn";
+              // synopsys translate_on
+              regop.imm <= -4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_Rm;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_0111 : begin
+              // synopsys translate_off
+              mnem = "DIV0S Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_DIV0S;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_1000 : begin
+              // synopsys translate_off
+              mnem = "TST Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_TST;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_1001 : begin
+              // synopsys translate_off
+              mnem = "AND Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_AND;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_1010 : begin
+              // synopsys translate_off
+              mnem = "XOR Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_XOR;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_1011 : begin
+              // synopsys translate_off
+              mnem = "OR Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_OR;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_1100 : begin
+              // synopsys translate_off
+              mnem = "CMP/STR Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CSTR;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_1101 : begin
+              // synopsys translate_off
+              mnem = "XTRCT Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_XTRCT;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_1110 : begin
+              // synopsys translate_off
+              mnem = "MULU.W Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+              macop.MAC <= MAC_MULUW;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0010_????_????_1111 : begin
+              // synopsys translate_off
+              mnem = "MULS.W Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+              macop.MAC <= MAC_MULSW;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_0000 : begin
+              // synopsys translate_off
+              mnem = "CMP/EQ Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CEQ;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_0010 : begin
+              // synopsys translate_off
+              mnem = "CMP/HS Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CHS;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_0011 : begin
+              // synopsys translate_off
+              mnem = "CMP/GE Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CGE;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_0100 : begin
+              // synopsys translate_off
+              mnem = "DIV1 Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_DIV1;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_0101 : begin
+              // synopsys translate_off
+              mnem = "DMULU.L Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+              macop.MAC <= MAC_DMULUL;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_0110 : begin
+              // synopsys translate_off
+              mnem = "CMP/HI Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CHI;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_0111 : begin
+              // synopsys translate_off
+              mnem = "CMP/GT Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CGT;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_1000 : begin
+              // synopsys translate_off
+              mnem = "SUB Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SUB;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_1010 : begin
+              // synopsys translate_off
+              mnem = "SUBC Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SUBC;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_1011 : begin
+              // synopsys translate_off
+              mnem = "SUBV Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SUBV;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_1100 : begin
+              // synopsys translate_off
+              mnem = "ADD Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_1101 : begin
+              // synopsys translate_off
+              mnem = "DMULS.L Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+              macop.MAC <= MAC_DMULSL;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_1110 : begin
+              // synopsys translate_off
+              mnem = "ADDC Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADDC;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0011_????_????_1111 : begin
+              // synopsys translate_off
+              mnem = "ADDV Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADDV;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0100_????_0000_0000 : begin
+              // synopsys translate_off
+              mnem = "SHLL Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_0000 : begin
+              // synopsys translate_off
+              mnem = "DT Rn";
+              // synopsys translate_on
+              regop.imm <= 1;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_DT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_0000 : begin
+              // synopsys translate_off
+              mnem = "SHAL Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_0001 : begin
+              // synopsys translate_off
+              mnem = "SHLR Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_0001 : begin
+              // synopsys translate_off
+              mnem = "CMP/PZ Rn";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CPZ;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_0001 : begin
+              // synopsys translate_off
+              mnem = "SHAR Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_0010 : begin
+              // synopsys translate_off
+              mnem = "STS.L MACH,@-Rn";
+              // synopsys translate_on
+              regop.imm <= -4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STMAC;
+              memop.Ma <= Ma_ALU;
+              macop.MAC <= MAC_STMACH;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_0010 : begin
+              // synopsys translate_off
+              mnem = "STS.L MACL,@-Rn";
+              // synopsys translate_on
+              regop.imm <= -4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STMAC;
+              memop.Ma <= Ma_ALU;
+              macop.MAC <= MAC_STMACL;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_0010 : begin
+              // synopsys translate_off
+              mnem = "STS.L PR,@-Rn";
+              // synopsys translate_on
+              regop.imm <= -4;
+              regop.other <= other_PR;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_other;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_0011 : begin
+              // synopsys translate_off
+              mnem = "STC.L SR, @-Rn";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= multi;
+              regop.imm <= -4;
+              regop.other <= other_SR;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_other;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_0011 : begin
+              // synopsys translate_off
+              mnem = "STC.L GBR, @-Rn";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= multi;
+              regop.imm <= -4;
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_other;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_0011 : begin
+              // synopsys translate_off
+              mnem = "STC.L VBR, @-Rn";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= multi;
+              regop.imm <= -4;
+              regop.other <= other_VBR;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_other;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_0100 : begin
+              // synopsys translate_off
+              mnem = "ROTL Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_0100 : begin
+              // synopsys translate_off
+              mnem = "ROTCL Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_0101 : begin
+              // synopsys translate_off
+              mnem = "ROTR Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_0101 : begin
+              // synopsys translate_off
+              mnem = "CMP/PL Rn";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CPL;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_0101 : begin
+              // synopsys translate_off
+              mnem = "ROTCR Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_0110 : begin
+              // synopsys translate_off
+              mnem = "LDS.L @Rm+,MACH";
+              // synopsys translate_on
+              regop.imm <= 4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Ra;
+              macop.MAC <= MAC_MACHM;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_0110 : begin
+              // synopsys translate_off
+              mnem = "LDS.L @Rm+,MACL";
+              // synopsys translate_on
+              regop.imm <= 4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Ra;
+              macop.MAC <= MAC_MACLM;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_0110 : begin
+              // synopsys translate_off
+              mnem = "LDS.L @Rm+,PR";
+              // synopsys translate_on
+              regop.imm <= 4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              regop.Wm <= Wm_PR;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_0111 : begin
+              // synopsys translate_off
+              mnem = "LDC.L @Rm+,SR";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= multi;
+              regop.imm <= 4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              regop.Wm <= Wm_SR;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_0111 : begin
+              // synopsys translate_off
+              mnem = "LDC.L @Rm+,GBR";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= multi;
+              regop.imm <= 4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              regop.Wm <= Wm_GBR;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_0111 : begin
+              // synopsys translate_off
+              mnem = "LDC.L @Rm+,VBR";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= multi;
+              regop.imm <= 4;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              regop.Wm <= Wm_VBR;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_1000 : begin
+              // synopsys translate_off
+              mnem = "SHLL2 Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_1000 : begin
+              // synopsys translate_off
+              mnem = "SHLL8 Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_1000 : begin
+              // synopsys translate_off
+              mnem = "SHLL16 Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_1001 : begin
+              // synopsys translate_off
+              mnem = "SHLR2 Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_1001 : begin
+              // synopsys translate_off
+              mnem = "SHLR8 Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_1001 : begin
+              // synopsys translate_off
+              mnem = "SHLR16 Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SHIFT;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_1010 : begin
+              // synopsys translate_off
+              mnem = "LDS Rm,MACH";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+              macop.MAC <= MAC_MACHE;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_1010 : begin
+              // synopsys translate_off
+              mnem = "LDS Rm,MACL";
+              // synopsys translate_on
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_nop;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_ADD;
+              macop.MAC <= MAC_MACLE;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_1010 : begin
+              // synopsys translate_off
+              mnem = "LDS Rm,PR";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PR;
+              exuop.EXU <= EXU_ADD;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_1011 : begin
+              // synopsys translate_off
+              mnem = "JSR @Rm";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC_PR;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_1011 : begin
+              // synopsys translate_off
+              mnem = "TAS.B @Rn";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= TASB;
+              regop.imm <= 0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_TMP;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB_LOCK;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_1011 : begin
+              // synopsys translate_off
+              mnem = "JMP @Rm";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_Ra;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0000_1110 : begin
+              // synopsys translate_off
+              mnem = "LDC Rm,SR";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_SR;
+              exuop.EXU <= EXU_ADD;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0001_1110 : begin
+              // synopsys translate_off
+              mnem = "LDC Rm,GBR";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_GBR;
+              exuop.EXU <= EXU_ADD;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_0010_1110 : begin
+              // synopsys translate_off
+              mnem = "LDC Rm,VBR";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_VBR;
+              exuop.EXU <= EXU_ADD;
+              regop.Rn <= op[11:8];
+           end
+           16'b0100_????_????_1111 : begin
+              // synopsys translate_off
+              mnem = "MAC.W @Rm+,@Rn+";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= MACW;
+              regop.imm <= 2;
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDW;
+              memop.Ma <= Ma_Ra;
+              macop.MAC <= MAC_MAC0W;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0101_????_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.L @(disp,Rm),Rn";
+              // synopsys translate_on
+              regop.imm <= {{7{1'b0}},op[3:0],2'b00}; // ze4x4
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_0000 : begin
+              // synopsys translate_off
+              mnem = "MOV.B @Rm, Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB;
+              memop.Ma <= Ma_Rb;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_0001 : begin
+              // synopsys translate_off
+              mnem = "MOV.W @Rm, Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDW;
+              memop.Ma <= Ma_Rb;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_0010 : begin
+              // synopsys translate_off
+              mnem = "MOV.L @Rm, Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Rb;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_0011 : begin
+              // synopsys translate_off
+              mnem = "MOV Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_Rb;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_0100 : begin
+              // synopsys translate_off
+              mnem = "MOV.B @Rm+,Rn";
+              // synopsys translate_on
+              regop.imm <= 1;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rm;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB;
+              memop.Ma <= Ma_Rb;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_0101 : begin
+              // synopsys translate_off
+              mnem = "MOV.W @Rm+,Rn";
+              // synopsys translate_on
+              regop.imm <= 2;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rm;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDW;
+              memop.Ma <= Ma_Rb;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_0110 : begin
+              // synopsys translate_off
+              mnem = "MOV.L @Rm+,Rn";
+              // synopsys translate_on
+              regop.imm <= 4;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rm;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_Rb;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_0111 : begin
+              // synopsys translate_off
+              mnem = "NOT Rm,Rn";
+              // synopsys translate_on
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_NOT;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_1000 : begin
+              // synopsys translate_off
+              mnem = "SWAP.B Rm,Rn";
+              // synopsys translate_on
+              regop.imm <= {{9{1'b0}},op[3:0]}; // ze4x1
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_EXSW;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_1001 : begin
+              // synopsys translate_off
+              mnem = "SWAP.W Rm,Rn";
+              // synopsys translate_on
+              regop.imm <= {{9{1'b0}},op[3:0]}; // ze4x1
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_EXSW;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_1010 : begin
+              // synopsys translate_off
+              mnem = "NEGC Rm,Rn";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SUBC;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_1011 : begin
+              // synopsys translate_off
+              mnem = "NEG Rm,Rn";
+              // synopsys translate_on
+              regop.imm <= 0;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_SUB;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_1100 : begin
+              // synopsys translate_off
+              mnem = "EXTU.B Rm,Rn";
+              // synopsys translate_on
+              regop.imm <= {{9{1'b0}},op[3:0]}; // ze4x1
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_EXSW;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_1101 : begin
+              // synopsys translate_off
+              mnem = "EXTU.W Rm,Rn";
+              // synopsys translate_on
+              regop.imm <= {{9{1'b0}},op[3:0]}; // ze4x1
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_EXSW;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_1110 : begin
+              // synopsys translate_off
+              mnem = "EXTS.B Rm,Rn";
+              // synopsys translate_on
+              regop.imm <= {{9{1'b0}},op[3:0]}; // ze4x1
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_EXSW;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0110_????_????_1111 : begin
+              // synopsys translate_off
+              mnem = "EXTS.W Rm,Rn";
+              // synopsys translate_on
+              regop.imm <= {{9{1'b0}},op[3:0]}; // ze4x1
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_EXSW;
+              regop.Rn <= op[11:8];
+              regop.Rm <= op[7:4];
+           end
+           16'b0111_????_????_???? : begin
+              // synopsys translate_off
+              mnem = "ADD #imm,Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{op[7]}},op[7:0]}; // se8x1
+              regop.Ra <= Ra_Rn;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_ADD;
+              regop.Rn <= op[11:8];
+           end
+           16'b1000_0000_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.B R0,@(disp,Rn)";
+              // synopsys translate_on
+              regop.imm <= {{9{1'b0}},op[3:0]}; // ze4x1
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STB;
+              memop.Ma <= Ma_ALU;
+              regop.Rm <= op[7:4];
+           end
+           16'b1000_0001_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.W R0,@(disp,Rn)";
+              // synopsys translate_on
+              regop.imm <= {{8{1'b0}},op[3:0],1'b0}; // ze4x2
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STW;
+              memop.Ma <= Ma_ALU;
+              regop.Rm <= op[7:4];
+           end
+           16'b1000_0100_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.B @(disp,Rm),R0";
+              // synopsys translate_on
+              regop.imm <= {{9{1'b0}},op[3:0]}; // ze4x1
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB;
+              memop.Ma <= Ma_ALU;
+              regop.Rm <= op[7:4];
+           end
+           16'b1000_0101_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.W @(disp,Rm),R0";
+              // synopsys translate_on
+              regop.imm <= {{8{1'b0}},op[3:0],1'b0}; // ze4x2
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_Rm;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDW;
+              memop.Ma <= Ma_ALU;
+              regop.Rm <= op[7:4];
+           end
+           16'b1000_1000_????_???? : begin
+              // synopsys translate_off
+              mnem = "CMP/EQ #imm R0";
+              // synopsys translate_on
+              regop.imm <= {{5{op[7]}},op[7:0]}; // se8x1
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_CEQ;
+           end
+           16'b1000_1001_????_???? : begin
+              // synopsys translate_off
+              mnem = "BT disp";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= multi;
+              regop.imm <= {{4{op[7]}},op[7:0],1'b0}; // se8x2
+              regop.other <= other_PC;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC;
+              exuop.EXU <= EXU_BT;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1000_1011_????_???? : begin
+              // synopsys translate_off
+              mnem = "BF disp";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= multi;
+              regop.imm <= {{4{op[7]}},op[7:0],1'b0}; // se8x2
+              regop.other <= other_PC;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC;
+              exuop.EXU <= EXU_BF;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1000_1101_????_???? : begin
+              // synopsys translate_off
+              mnem = "BT/S disp";
+              // synopsys translate_on
+              regop.imm <= {{4{op[7]}},op[7:0],1'b0}; // se8x2
+              regop.other <= other_PC;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC;
+              exuop.EXU <= EXU_BTS;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1000_1111_????_???? : begin
+              // synopsys translate_off
+              mnem = "BF/S disp";
+              // synopsys translate_on
+              regop.imm <= {{4{op[7]}},op[7:0],1'b0}; // se8x2
+              regop.other <= other_PC;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC;
+              exuop.EXU <= EXU_BFS;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1001_????_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.W @(disp,PC),Rn";
+              // synopsys translate_on
+              regop.imm <= {{4{1'b0}},op[7:0],1'b0}; // ze8x2
+              regop.other <= other_PC;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD_PC;
+              memop.MEM <= MEM_LDW;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+           end
+           16'b1010_????_????_???? : begin
+              // synopsys translate_off
+              mnem = "BRA disp";
+              // synopsys translate_on
+              regop.imm <= {op[11:0],1'b0}; // se12x2
+              regop.other <= other_PC;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC;
+              exuop.EXU <= EXU_ADD_PC;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1011_????_????_???? : begin
+              // synopsys translate_off
+              mnem = "BSR disp";
+              // synopsys translate_on
+              regop.imm <= {op[11:0],1'b0}; // se12x2
+              regop.other <= other_PC;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_PC_PR;
+              exuop.EXU <= EXU_ADD_PC;
+              memop.MEM <= MEM_IF;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_0000_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.B R0,@(disp,GBR)";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STB;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_0001_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.W R0,@(disp,GBR)";
+              // synopsys translate_on
+              regop.imm <= {{4{1'b0}},op[7:0],1'b0}; // ze8x2
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STW;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_0010_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.L R0,@(disp,GBR)";
+              // synopsys translate_on
+              regop.imm <= {{3{1'b0}},op[7:0],2'b00}; // ze8x4
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_STL;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_0011_????_???? : begin
+              // synopsys translate_off
+              mnem = "TRAPA #imm";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= STSR;
+              regop.imm <= {{3{1'b0}},op[7:0],2'b00}; // ze8x4
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_TMP;
+              exuop.EXU <= EXU_Rb;
+              memop.MEM <= MEM_TRP;
+              regop.Rn <= op[11:8];
+           end
+           16'b1100_0100_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.B @(disp,GBR),R0";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_0101_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.W @(disp,GBR),R0";
+              // synopsys translate_on
+              regop.imm <= {{4{1'b0}},op[7:0],1'b0}; // ze8x2
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDW;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_0110_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.L @(disp,GBR),R0";
+              // synopsys translate_on
+              regop.imm <= {{3{1'b0}},op[7:0],2'b00}; // ze8x4
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_R0;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_0111_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOVA @(disp,PC),R0";
+              // synopsys translate_on
+              regop.imm <= {{3{1'b0}},op[7:0],2'b00}; // ze8x4
+              regop.other <= other_PC;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_R0;
+              exuop.EXU <= EXU_ADD_FC;
+           end
+           16'b1100_1000_????_???? : begin
+              // synopsys translate_off
+              mnem = "TST #imm,R0";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              exuop.EXU <= EXU_TST;
+           end
+           16'b1100_1001_????_???? : begin
+              // synopsys translate_off
+              mnem = "AND #imm,R0";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_R0;
+              exuop.EXU <= EXU_AND;
+           end
+           16'b1100_1010_????_???? : begin
+              // synopsys translate_off
+              mnem = "XOR #imm,R0";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_R0;
+              exuop.EXU <= EXU_XOR;
+           end
+           16'b1100_1011_????_???? : begin
+              // synopsys translate_off
+              mnem = "OR #imm,R0";
+              // synopsys translate_on
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_R0;
+              exuop.EXU <= EXU_OR;
+           end
+           16'b1100_1100_????_???? : begin
+              // synopsys translate_off
+              mnem = "TST.B #imm,@(R0,GBR)";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= TSTB;
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_TMP;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_1101_????_???? : begin
+              // synopsys translate_off
+              mnem = "AND.B #imm,@(R0,GBR)";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= ANDB;
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_TMP;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_1110_????_???? : begin
+              // synopsys translate_off
+              mnem = "XOR.B #imm,@(R0,GBR)";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= XORB;
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_TMP;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1100_1111_????_???? : begin
+              // synopsys translate_off
+              mnem = "OR.B #imm,@(R0,GBR)";
+              // synopsys translate_on
+              pc_hold <= 1'b1;
+              opst <= ORB;
+              regop.imm <= {{5{1'b0}},op[7:0]}; // ze8x1
+              regop.other <= other_GBR;
+              regop.Ra <= Ra_R0;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_TMP;
+              exuop.EXU <= EXU_ADD;
+              memop.MEM <= MEM_LDB;
+              memop.Ma <= Ma_ALU;
+           end
+           16'b1101_????_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV.L @(disp,PC),Rn";
+              // synopsys translate_on
+              regop.imm <= {{3{1'b0}},op[7:0],2'b00}; // ze8x4
+              regop.other <= other_PC;
+              regop.Ra <= Ra_imm;
+              regop.Rb <= Rb_other;
+              regop.Rs <= Rs_nop;
+              regop.Wm <= Wm_Rn;
+              exuop.EXU <= EXU_ADD_FC;
+              memop.MEM <= MEM_LDL;
+              memop.Ma <= Ma_ALU;
+              regop.Rn <= op[11:8];
+           end
+           16'b1110_????_????_???? : begin
+              // synopsys translate_off
+              mnem = "MOV #imm,Rn";
+              // synopsys translate_on
+              regop.imm <= {{5{op[7]}},op[7:0]}; // se8x1
+              regop.Ra <= Ra_nop;
+              regop.Rb <= Rb_imm;
+              regop.Rs <= Rs_nop;
+              regop.We <= We_Rn;
+              exuop.EXU <= EXU_Rb;
+              regop.Rn <= op[11:8];
+           end

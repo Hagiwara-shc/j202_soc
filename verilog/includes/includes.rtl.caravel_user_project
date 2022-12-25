@@ -1,5 +1,108 @@
-# Caravel user project includes
--v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v	     
--v $(USER_PROJECT_VERILOG)/rtl/user_proj_example.v
++incdir+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22
++incdir+$(USER_PROJECT_VERILOG)/rtl/j202_soc/system
++incdir+$(USER_PROJECT_VERILOG)/rtl/j202_soc/qspiflash
++incdir+$(USER_PROJECT_VERILOG)/rtl/j202_soc/bootrom
 
- 
+// Config, etc.
+$(USER_PROJECT_VERILOG)/rtl/defines.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/config/config.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/system/defines.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/system/timescale.v
+
+// SH-2 CPU
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22/cpuh.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22/cpu.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22/ex.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22/id.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22/idec.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22/ma.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22/ml.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22/rf.sv
+
+// user_project_wrapper
+$(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v	     
+
+// J202 SoC Core
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j202_soc_core/j202_soc_core.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j202_soc_core/j202_soc_core_wrapper.v
+
+// AHB Interconnect
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/ahblite_interconnect/ahblite_interconnect.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/ahblite_interconnect/ahblite_m_port.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/ahblite_interconnect/ahblite_s_port.sv
+
+// AHB <-> APB Bridge
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/ahb2apb_bridge/ahb2apb_bridge.v
+
+// AHB <-> Wishbone Bridge
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/j22/ahb2aqu.sv
+
+// UART
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/system/sasc_top.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/system/sasc_brg.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/system/sasc_fifo4.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/system/uart.v
+
+// BLDC
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/wb_bldc/bldc_adc_ctrl.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/wb_bldc/bldc_cfg_status_regs.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/wb_bldc/bldc_core.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/wb_bldc/bldc_hall.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/wb_bldc/bldc_pwm.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/wb_bldc/bldc_wb_slave.v
+
+// CMT
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/cmt_core/cmt_2ch.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/cmt_core/cmt_apb.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/cmt_core/cmt_core.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/cmt_core/cmt_regs.v
+
+// INTC
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_2to1_sel.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_32to1_sel.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_apb.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_core.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_cpuif.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_err_in.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_in.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_intr_in.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_nmi_in.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_one_cpuif.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_regs.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_rg_cfg.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_rg_clr.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_sel.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/intc_core/intc_sel_cpu.sv
+
+// GPIO
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/gpio_core/gpio_apb.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/gpio_core/gpio_cfg_reg.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/gpio_core/gpio_core.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/gpio_core/gpio_regs.sv
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/gpio_core/gpio_status_reg.sv
+
+// QSPI Flash Controller
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/qspiflash/ahb2wbqspi.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/qspiflash/wbqspiflash.v
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/qspiflash/llqspi.v
+
+// Boot ROM
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/bootrom/bootrom.sv
+
+// TCM
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/memory/Sky130/memory.sv
++define+RANDOMIZE_MEM_INIT
++define+RANDOMIZE_DELAY=10
+$(USER_PROJECT_VERILOG)/rtl/j202_soc/memory/Sky130/sky130_sram_2kbyte_1rw1r_32x512_8.v
+
+// Lib
+-v $(USER_PROJECT_VERILOG)/rtl/j202_soc/lib/lib.v
+
+// SPI Flash model
++define+SPEEDSIM
+-v $(USER_PROJECT_VERILOG)/dv/vip/MX25U3235F.v
+
+// UART model
++incdir+$(USER_PROJECT_VERILOG)/dv/vip/uart
+-v $(USER_PROJECT_VERILOG)/dv/vip/uart/uart_tb.v
+

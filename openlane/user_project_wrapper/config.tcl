@@ -75,7 +75,7 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-  $::env(CARAVEL_ROOT)/../verilog/rtl/j202_soc/j202_soc_core_wrapper.v"
+  $::env(CARAVEL_ROOT)/../verilog/rtl/j202_soc/j202_soc_core/j202_soc_core_wrapper.v"
 
 set ::env(EXTRA_LEFS) "\
 	$::env(CARAVEL_ROOT)/../lef/j202_soc_core_wrapper_del_met5.lef"

@@ -1,0 +1,60 @@
+/* OUTPUT_FORMAT("elf32-sh") */
+OUTPUT_ARCH(sh)
+ENTRY("_start")
+
+MEMORY
+{
+	romall(rx)	: o = 0x00000000, l = 0x001000 /* 4KB BootROM */
+	vectors(r)	: o = 0x00000000, l = 0x000400 /* top of BootROM */
+	rom(rx)		: o = 0x00000400, l = 0x000c00
+
+	ramall(rwx)	: o = 0xfff80000, l = 0x008000 /* 32KB TCM0 */
+	buffer(rwx)	: o = 0xfff84000, l = 0x003000 /* 12KB TCM0 */
+	data(rwx)	: o = 0xfff87000, l = 0x000800 /*  2KB TCM0 */
+	stack(rw)	: o = 0xfff88000, l = 0x000000 /* end of TCM0 */
+}
+
+SECTIONS
+{
+	.vectors : {
+		vector.o(.data)
+	} > vectors
+
+	.text : {
+		_text_start = . ;
+		*(.text)
+		_etext = . ;
+	} > rom
+
+	.rodata : {
+		_rodata_start = . ;
+		*(.strings)
+		*(.rodata)
+		*(.rodata.*)
+		_erodata = . ;
+	} > rom
+
+	.buffer : {
+		_buffer_start = . ;
+	} > buffer
+
+	.data : {
+		_data_start = . ;
+		*(.data)
+		_edata = . ;
+	} > data AT> rom
+
+	.bss : {
+		_bss_start = . ;
+		*(.bss)
+		*(COMMON)
+		_ebss = . ;
+	} > data AT> rom
+
+	. = ALIGN(4);
+	_end = . ;
+
+	.stack : {
+		_stack = .;
+	} > stack
+}

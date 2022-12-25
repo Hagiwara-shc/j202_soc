@@ -1,0 +1,973 @@
+
+kzload.elf:     file format elf32-sh
+
+
+Disassembly of section .text:
+
+00000400 <_start>:
+ 400:	df 03       	mov.l	410 <_pstack>,r15	! fff88000 <_stack>
+ 402:	d2 04       	mov.l	414 <_main_dis>,r2	! 420 <_main>
+ 404:	42 0b       	jsr	@r2
+ 406:	00 09       	nop	
+
+00000408 <_pass>:
+ 408:	af fe       	bra	408 <_pass>
+ 40a:	00 09       	nop	
+ 40c:	00 09       	nop	
+ 40e:	00 09       	nop	
+
+00000410 <_pstack>:
+ 410:	ff f8       	.word 0xfff8
+ 412:	80 00       	mov.b	r0,@(0,r0)
+
+00000414 <_main_dis>:
+ 414:	00 00       	.word 0x0000
+ 416:	04 20       	.word 0x0420
+ 418:	00 09       	nop	
+ 41a:	00 09       	nop	
+ 41c:	00 09       	nop	
+ 41e:	00 09       	nop	
+
+00000420 <_main>:
+ 420:	2f 86       	mov.l	r8,@-r15
+ 422:	2f 96       	mov.l	r9,@-r15
+ 424:	2f a6       	mov.l	r10,@-r15
+ 426:	2f b6       	mov.l	r11,@-r15
+ 428:	2f c6       	mov.l	r12,@-r15
+ 42a:	2f d6       	mov.l	r13,@-r15
+ 42c:	2f e6       	mov.l	r14,@-r15
+ 42e:	4f 22       	sts.l	pr,@-r15
+ 430:	7f fc       	add	#-4,r15
+ 432:	d1 57       	mov.l	590 <_main+0x170>,r1	! fff87000 <_data_start>
+ 434:	64 13       	mov	r1,r4
+ 436:	d5 57       	mov.l	594 <_main+0x174>,r5	! c14 <_erodata>
+ 438:	d6 57       	mov.l	598 <_main+0x178>,r6	! fff87004 <_edata>
+ 43a:	d0 58       	mov.l	59c <_main+0x17c>,r0	! 630 <_memcpy>
+ 43c:	40 0b       	jsr	@r0
+ 43e:	36 18       	sub	r1,r6
+ 440:	d1 57       	mov.l	5a0 <_main+0x180>,r1	! fff87004 <_edata>
+ 442:	64 13       	mov	r1,r4
+ 444:	e5 00       	mov	#0,r5
+ 446:	d6 57       	mov.l	5a4 <_main+0x184>,r6	! fff87020 <_ebss>
+ 448:	d0 57       	mov.l	5a8 <_main+0x188>,r0	! 618 <_memset>
+ 44a:	40 0b       	jsr	@r0
+ 44c:	36 18       	sub	r1,r6
+ 44e:	e4 00       	mov	#0,r4
+ 450:	d1 56       	mov.l	5ac <_main+0x18c>,r1	! fff87004 <_edata>
+ 452:	d0 57       	mov.l	5b0 <_main+0x190>,r0	! 8b0 <_serial_init>
+ 454:	40 0b       	jsr	@r0
+ 456:	65 12       	mov.l	@r1,r5
+ 458:	d4 56       	mov.l	5b4 <_main+0x194>,r4	! b30 <_etext>
+ 45a:	d0 57       	mov.l	5b8 <_main+0x198>,r0	! 784 <_puts>
+ 45c:	40 0b       	jsr	@r0
+ 45e:	00 09       	nop	
+ 460:	d9 55       	mov.l	5b8 <_main+0x198>,r9	! 784 <_puts>
+ 462:	db 56       	mov.l	5bc <_main+0x19c>,r11	! fff87008 <_buf.974>
+ 464:	d4 56       	mov.l	5c0 <_main+0x1a0>,r4	! b58
+ 466:	49 0b       	jsr	@r9
+ 468:	00 09       	nop	
+ 46a:	d1 56       	mov.l	5c4 <_main+0x1a4>,r1	! 7b4 <_gets>
+ 46c:	41 0b       	jsr	@r1
+ 46e:	64 b3       	mov	r11,r4
+ 470:	d5 55       	mov.l	5c8 <_main+0x1a8>,r5	! b64
+ 472:	d0 56       	mov.l	5cc <_main+0x1ac>,r0	! 6c8 <_strcmp>
+ 474:	40 0b       	jsr	@r0
+ 476:	64 b3       	mov	r11,r4
+ 478:	20 08       	tst	r0,r0
+ 47a:	8b 24       	bf	4c6 <_main+0xa6>
+ 47c:	d4 54       	mov.l	5d0 <_main+0x1b0>,r4	! fff84000 <_buffer_start>
+ 47e:	d1 55       	mov.l	5d4 <_main+0x1b4>,r1	! fff87018 <_loadbuf.976>
+ 480:	d0 55       	mov.l	5d8 <_main+0x1b8>,r0	! 934 <_xmodem_recv>
+ 482:	40 0b       	jsr	@r0
+ 484:	21 42       	mov.l	r4,@r1
+ 486:	d1 55       	mov.l	5dc <_main+0x1bc>,r1	! fff87000 <_data_start>
+ 488:	21 02       	mov.l	r0,@r1
+ 48a:	d1 48       	mov.l	5ac <_main+0x18c>,r1	! fff87004 <_edata>
+ 48c:	61 12       	mov.l	@r1,r1
+ 48e:	21 18       	tst	r1,r1
+ 490:	8f 01       	bf.s	496 <_main+0x76>
+ 492:	e2 64       	mov	#100,r2
+ 494:	d2 52       	mov.l	5e0 <_main+0x1c0>,r2	! 2dc6c0
+ 496:	e1 00       	mov	#0,r1
+ 498:	2f 12       	mov.l	r1,@r15
+ 49a:	61 f2       	mov.l	@r15,r1
+ 49c:	31 23       	cmp/ge	r2,r1
+ 49e:	8d 07       	bt.s	4b0 <_main+0x90>
+ 4a0:	40 11       	cmp/pz	r0
+ 4a2:	61 f2       	mov.l	@r15,r1
+ 4a4:	71 01       	add	#1,r1
+ 4a6:	2f 12       	mov.l	r1,@r15
+ 4a8:	61 f2       	mov.l	@r15,r1
+ 4aa:	31 23       	cmp/ge	r2,r1
+ 4ac:	8f f9       	bf.s	4a2 <_main+0x82>
+ 4ae:	40 11       	cmp/pz	r0
+ 4b0:	89 04       	bt	4bc <_main+0x9c>
+ 4b2:	d4 4c       	mov.l	5e4 <_main+0x1c4>,r4	! b6c
+ 4b4:	49 0b       	jsr	@r9
+ 4b6:	00 09       	nop	
+ 4b8:	af d4       	bra	464 <_main+0x44>
+ 4ba:	00 09       	nop	
+ 4bc:	d4 4a       	mov.l	5e8 <_main+0x1c8>,r4	! b84
+ 4be:	49 0b       	jsr	@r9
+ 4c0:	00 09       	nop	
+ 4c2:	af cf       	bra	464 <_main+0x44>
+ 4c4:	00 09       	nop	
+ 4c6:	d5 49       	mov.l	5ec <_main+0x1cc>,r5	! ba0
+ 4c8:	d0 40       	mov.l	5cc <_main+0x1ac>,r0	! 6c8 <_strcmp>
+ 4ca:	40 0b       	jsr	@r0
+ 4cc:	64 b3       	mov	r11,r4
+ 4ce:	20 08       	tst	r0,r0
+ 4d0:	8b 39       	bf	546 <_main+0x126>
+ 4d2:	d4 47       	mov.l	5f0 <_main+0x1d0>,r4	! ba8
+ 4d4:	49 0b       	jsr	@r9
+ 4d6:	00 09       	nop	
+ 4d8:	da 40       	mov.l	5dc <_main+0x1bc>,r10	! fff87000 <_data_start>
+ 4da:	64 a2       	mov.l	@r10,r4
+ 4dc:	d0 45       	mov.l	5f4 <_main+0x1d4>,r0	! 7fc <_putxval>
+ 4de:	40 0b       	jsr	@r0
+ 4e0:	e5 00       	mov	#0,r5
+ 4e2:	d4 45       	mov.l	5f8 <_main+0x1d8>,r4	! bb8
+ 4e4:	49 0b       	jsr	@r9
+ 4e6:	00 09       	nop	
+ 4e8:	d1 3a       	mov.l	5d4 <_main+0x1b4>,r1	! fff87018 <_loadbuf.976>
+ 4ea:	6d a2       	mov.l	@r10,r13
+ 4ec:	4d 11       	cmp/pz	r13
+ 4ee:	8f 05       	bf.s	4fc <_main+0xdc>
+ 4f0:	68 12       	mov.l	@r1,r8
+ 4f2:	4d 15       	cmp/pl	r13
+ 4f4:	8d 07       	bt.s	506 <_main+0xe6>
+ 4f6:	6a 83       	mov	r8,r10
+ 4f8:	a0 20       	bra	53c <_main+0x11c>
+ 4fa:	00 09       	nop	
+ 4fc:	d4 3f       	mov.l	5fc <_main+0x1dc>,r4	! bb0
+ 4fe:	49 0b       	jsr	@r9
+ 500:	00 09       	nop	
+ 502:	af af       	bra	464 <_main+0x44>
+ 504:	00 09       	nop	
+ 506:	6e 83       	mov	r8,r14
+ 508:	3d 8c       	add	r8,r13
+ 50a:	dc 3a       	mov.l	5f4 <_main+0x1d4>,r12	! 7fc <_putxval>
+ 50c:	3a e8       	sub	r14,r10
+ 50e:	64 84       	mov.b	@r8+,r4
+ 510:	4c 0b       	jsr	@r12
+ 512:	e5 02       	mov	#2,r5
+ 514:	60 a3       	mov	r10,r0
+ 516:	c9 0f       	and	#15,r0
+ 518:	88 0f       	cmp/eq	#15,r0
+ 51a:	8b 04       	bf	526 <_main+0x106>
+ 51c:	d4 36       	mov.l	5f8 <_main+0x1d8>,r4	! bb8
+ 51e:	49 0b       	jsr	@r9
+ 520:	00 09       	nop	
+ 522:	a0 09       	bra	538 <_main+0x118>
+ 524:	38 d0       	cmp/eq	r13,r8
+ 526:	88 07       	cmp/eq	#7,r0
+ 528:	8b 02       	bf	530 <_main+0x110>
+ 52a:	d4 35       	mov.l	600 <_main+0x1e0>,r4	! bbc
+ 52c:	49 0b       	jsr	@r9
+ 52e:	00 09       	nop	
+ 530:	d4 33       	mov.l	600 <_main+0x1e0>,r4	! bbc
+ 532:	49 0b       	jsr	@r9
+ 534:	00 09       	nop	
+ 536:	38 d0       	cmp/eq	r13,r8
+ 538:	8f e8       	bf.s	50c <_main+0xec>
+ 53a:	6a 83       	mov	r8,r10
+ 53c:	d4 2e       	mov.l	5f8 <_main+0x1d8>,r4	! bb8
+ 53e:	49 0b       	jsr	@r9
+ 540:	00 09       	nop	
+ 542:	af 8f       	bra	464 <_main+0x44>
+ 544:	00 09       	nop	
+ 546:	d5 2f       	mov.l	604 <_main+0x1e4>,r5	! bc0
+ 548:	d0 20       	mov.l	5cc <_main+0x1ac>,r0	! 6c8 <_strcmp>
+ 54a:	40 0b       	jsr	@r0
+ 54c:	64 b3       	mov	r11,r4
+ 54e:	20 08       	tst	r0,r0
+ 550:	8b 19       	bf	586 <_main+0x166>
+ 552:	d1 20       	mov.l	5d4 <_main+0x1b4>,r1	! fff87018 <_loadbuf.976>
+ 554:	d0 2c       	mov.l	608 <_main+0x1e8>,r0	! a5c <_elf_load>
+ 556:	40 0b       	jsr	@r0
+ 558:	64 12       	mov.l	@r1,r4
+ 55a:	20 08       	tst	r0,r0
+ 55c:	8f 05       	bf.s	56a <_main+0x14a>
+ 55e:	68 03       	mov	r0,r8
+ 560:	d4 2a       	mov.l	60c <_main+0x1ec>,r4	! bc4
+ 562:	49 0b       	jsr	@r9
+ 564:	00 09       	nop	
+ 566:	af 7d       	bra	464 <_main+0x44>
+ 568:	00 09       	nop	
+ 56a:	d4 29       	mov.l	610 <_main+0x1f0>,r4	! bd0
+ 56c:	49 0b       	jsr	@r9
+ 56e:	00 09       	nop	
+ 570:	64 83       	mov	r8,r4
+ 572:	d0 20       	mov.l	5f4 <_main+0x1d4>,r0	! 7fc <_putxval>
+ 574:	40 0b       	jsr	@r0
+ 576:	e5 00       	mov	#0,r5
+ 578:	d4 1f       	mov.l	5f8 <_main+0x1d8>,r4	! bb8
+ 57a:	49 0b       	jsr	@r9
+ 57c:	00 09       	nop	
+ 57e:	48 0b       	jsr	@r8
+ 580:	00 09       	nop	
+ 582:	af 6f       	bra	464 <_main+0x44>
+ 584:	00 09       	nop	
+ 586:	d4 23       	mov.l	614 <_main+0x1f4>,r4	! bec
+ 588:	49 0b       	jsr	@r9
+ 58a:	00 09       	nop	
+ 58c:	af 6a       	bra	464 <_main+0x44>
+ 58e:	00 09       	nop	
+ 590:	ff f8       	.word 0xfff8
+ 592:	70 00       	add	#0,r0
+ 594:	00 00       	.word 0x0000
+ 596:	0c 14       	mov.b	r1,@(r0,r12)
+ 598:	ff f8       	.word 0xfff8
+ 59a:	70 04       	add	#4,r0
+ 59c:	00 00       	.word 0x0000
+ 59e:	06 30       	.word 0x0630
+ 5a0:	ff f8       	.word 0xfff8
+ 5a2:	70 04       	add	#4,r0
+ 5a4:	ff f8       	.word 0xfff8
+ 5a6:	70 20       	add	#32,r0
+ 5a8:	00 00       	.word 0x0000
+ 5aa:	06 18       	.word 0x0618
+ 5ac:	ff f8       	.word 0xfff8
+ 5ae:	70 04       	add	#4,r0
+ 5b0:	00 00       	.word 0x0000
+ 5b2:	08 b0       	.word 0x08b0
+ 5b4:	00 00       	.word 0x0000
+ 5b6:	0b 30       	.word 0x0b30
+ 5b8:	00 00       	.word 0x0000
+ 5ba:	07 84       	mov.b	r8,@(r0,r7)
+ 5bc:	ff f8       	.word 0xfff8
+ 5be:	70 08       	add	#8,r0
+ 5c0:	00 00       	.word 0x0000
+ 5c2:	0b 58       	.word 0x0b58
+ 5c4:	00 00       	.word 0x0000
+ 5c6:	07 b4       	mov.b	r11,@(r0,r7)
+ 5c8:	00 00       	.word 0x0000
+ 5ca:	0b 64       	mov.b	r6,@(r0,r11)
+ 5cc:	00 00       	.word 0x0000
+ 5ce:	06 c8       	.word 0x06c8
+ 5d0:	ff f8       	.word 0xfff8
+ 5d2:	40 00       	shll	r0
+ 5d4:	ff f8       	.word 0xfff8
+ 5d6:	70 18       	add	#24,r0
+ 5d8:	00 00       	.word 0x0000
+ 5da:	09 34       	mov.b	r3,@(r0,r9)
+ 5dc:	ff f8       	.word 0xfff8
+ 5de:	70 00       	add	#0,r0
+ 5e0:	00 2d       	mov.w	@(r0,r2),r0
+ 5e2:	c6 c0       	mov.l	@(768,gbr),r0
+ 5e4:	00 00       	.word 0x0000
+ 5e6:	0b 6c       	mov.b	@(r0,r6),r11
+ 5e8:	00 00       	.word 0x0000
+ 5ea:	0b 84       	mov.b	r8,@(r0,r11)
+ 5ec:	00 00       	.word 0x0000
+ 5ee:	0b a0       	.word 0x0ba0
+ 5f0:	00 00       	.word 0x0000
+ 5f2:	0b a8       	.word 0x0ba8
+ 5f4:	00 00       	.word 0x0000
+ 5f6:	07 fc       	mov.b	@(r0,r15),r7
+ 5f8:	00 00       	.word 0x0000
+ 5fa:	0b b8       	.word 0x0bb8
+ 5fc:	00 00       	.word 0x0000
+ 5fe:	0b b0       	.word 0x0bb0
+ 600:	00 00       	.word 0x0000
+ 602:	0b bc       	mov.b	@(r0,r11),r11
+ 604:	00 00       	.word 0x0000
+ 606:	0b c0       	.word 0x0bc0
+ 608:	00 00       	.word 0x0000
+ 60a:	0a 5c       	mov.b	@(r0,r5),r10
+ 60c:	00 00       	.word 0x0000
+ 60e:	0b c4       	mov.b	r12,@(r0,r11)
+ 610:	00 00       	.word 0x0000
+ 612:	0b d0       	.word 0x0bd0
+ 614:	00 00       	.word 0x0000
+ 616:	0b ec       	mov.b	@(r0,r14),r11
+
+00000618 <_memset>:
+ 618:	46 15       	cmp/pl	r6
+ 61a:	8f 07       	bf.s	62c <_memset+0x14>
+ 61c:	36 4c       	add	r4,r6
+ 61e:	61 43       	mov	r4,r1
+ 620:	62 63       	mov	r6,r2
+ 622:	32 48       	sub	r4,r2
+ 624:	21 50       	mov.b	r5,@r1
+ 626:	42 10       	dt	r2
+ 628:	8f fc       	bf.s	624 <_memset+0xc>
+ 62a:	71 01       	add	#1,r1
+ 62c:	00 0b       	rts	
+ 62e:	60 43       	mov	r4,r0
+
+00000630 <_memcpy>:
+ 630:	46 15       	cmp/pl	r6
+ 632:	8f 08       	bf.s	646 <_memcpy+0x16>
+ 634:	36 4c       	add	r4,r6
+ 636:	61 43       	mov	r4,r1
+ 638:	62 63       	mov	r6,r2
+ 63a:	32 48       	sub	r4,r2
+ 63c:	63 54       	mov.b	@r5+,r3
+ 63e:	21 30       	mov.b	r3,@r1
+ 640:	42 10       	dt	r2
+ 642:	8f fb       	bf.s	63c <_memcpy+0xc>
+ 644:	71 01       	add	#1,r1
+ 646:	00 0b       	rts	
+ 648:	60 43       	mov	r4,r0
+
+0000064a <_memcmp>:
+ 64a:	46 15       	cmp/pl	r6
+ 64c:	8b 19       	bf	682 <_memcmp+0x38>
+ 64e:	62 40       	mov.b	@r4,r2
+ 650:	61 50       	mov.b	@r5,r1
+ 652:	32 10       	cmp/eq	r1,r2
+ 654:	8d 0c       	bt.s	670 <_memcmp+0x26>
+ 656:	75 01       	add	#1,r5
+ 658:	75 ff       	add	#-1,r5
+ 65a:	a0 05       	bra	668 <_memcmp+0x1e>
+ 65c:	32 17       	cmp/gt	r1,r2
+ 65e:	62 34       	mov.b	@r3+,r2
+ 660:	61 54       	mov.b	@r5+,r1
+ 662:	32 10       	cmp/eq	r1,r2
+ 664:	8d 08       	bt.s	678 <_memcmp+0x2e>
+ 666:	32 17       	cmp/gt	r1,r2
+ 668:	8b 0d       	bf	686 <_memcmp+0x3c>
+ 66a:	e0 01       	mov	#1,r0
+ 66c:	00 0b       	rts	
+ 66e:	00 09       	nop	
+ 670:	36 4c       	add	r4,r6
+ 672:	63 43       	mov	r4,r3
+ 674:	73 01       	add	#1,r3
+ 676:	36 48       	sub	r4,r6
+ 678:	46 10       	dt	r6
+ 67a:	8f f0       	bf.s	65e <_memcmp+0x14>
+ 67c:	e0 00       	mov	#0,r0
+ 67e:	00 0b       	rts	
+ 680:	00 09       	nop	
+ 682:	00 0b       	rts	
+ 684:	e0 00       	mov	#0,r0
+ 686:	00 0b       	rts	
+ 688:	e0 ff       	mov	#-1,r0
+
+0000068a <_strlen>:
+ 68a:	61 40       	mov.b	@r4,r1
+ 68c:	21 18       	tst	r1,r1
+ 68e:	8d 08       	bt.s	6a2 <_strlen+0x18>
+ 690:	61 43       	mov	r4,r1
+ 692:	71 01       	add	#1,r1
+ 694:	60 13       	mov	r1,r0
+ 696:	62 14       	mov.b	@r1+,r2
+ 698:	22 28       	tst	r2,r2
+ 69a:	8f fb       	bf.s	694 <_strlen+0xa>
+ 69c:	30 48       	sub	r4,r0
+ 69e:	00 0b       	rts	
+ 6a0:	00 09       	nop	
+ 6a2:	00 0b       	rts	
+ 6a4:	e0 00       	mov	#0,r0
+
+000006a6 <_strcpy>:
+ 6a6:	61 50       	mov.b	@r5,r1
+ 6a8:	24 10       	mov.b	r1,@r4
+ 6aa:	61 50       	mov.b	@r5,r1
+ 6ac:	21 18       	tst	r1,r1
+ 6ae:	89 09       	bt	6c4 <_strcpy+0x1e>
+ 6b0:	61 43       	mov	r4,r1
+ 6b2:	71 01       	add	#1,r1
+ 6b4:	75 01       	add	#1,r5
+ 6b6:	62 53       	mov	r5,r2
+ 6b8:	63 54       	mov.b	@r5+,r3
+ 6ba:	21 30       	mov.b	r3,@r1
+ 6bc:	62 20       	mov.b	@r2,r2
+ 6be:	22 28       	tst	r2,r2
+ 6c0:	8f f9       	bf.s	6b6 <_strcpy+0x10>
+ 6c2:	71 01       	add	#1,r1
+ 6c4:	00 0b       	rts	
+ 6c6:	60 43       	mov	r4,r0
+
+000006c8 <_strcmp>:
+ 6c8:	a0 09       	bra	6de <_strcmp+0x16>
+ 6ca:	61 44       	mov.b	@r4+,r1
+ 6cc:	62 54       	mov.b	@r5+,r2
+ 6ce:	31 20       	cmp/eq	r2,r1
+ 6d0:	89 04       	bt	6dc <_strcmp+0x14>
+ 6d2:	32 13       	cmp/ge	r1,r2
+ 6d4:	89 0b       	bt	6ee <_strcmp+0x26>
+ 6d6:	e0 01       	mov	#1,r0
+ 6d8:	00 0b       	rts	
+ 6da:	00 09       	nop	
+ 6dc:	61 44       	mov.b	@r4+,r1
+ 6de:	21 18       	tst	r1,r1
+ 6e0:	8b f4       	bf	6cc <_strcmp+0x4>
+ 6e2:	62 50       	mov.b	@r5,r2
+ 6e4:	22 28       	tst	r2,r2
+ 6e6:	8f f4       	bf.s	6d2 <_strcmp+0xa>
+ 6e8:	e0 00       	mov	#0,r0
+ 6ea:	00 0b       	rts	
+ 6ec:	00 09       	nop	
+ 6ee:	00 0b       	rts	
+ 6f0:	e0 ff       	mov	#-1,r0
+
+000006f2 <_strncmp>:
+ 6f2:	61 63       	mov	r6,r1
+ 6f4:	46 11       	cmp/pz	r6
+ 6f6:	8d 0c       	bt.s	712 <_strncmp+0x20>
+ 6f8:	71 01       	add	#1,r1
+ 6fa:	a0 0a       	bra	712 <_strncmp+0x20>
+ 6fc:	e1 01       	mov	#1,r1
+ 6fe:	63 54       	mov.b	@r5+,r3
+ 700:	32 30       	cmp/eq	r3,r2
+ 702:	8d 06       	bt.s	712 <_strncmp+0x20>
+ 704:	76 ff       	add	#-1,r6
+ 706:	76 01       	add	#1,r6
+ 708:	32 37       	cmp/gt	r3,r2
+ 70a:	8b 0d       	bf	728 <_strncmp+0x36>
+ 70c:	e0 01       	mov	#1,r0
+ 70e:	00 0b       	rts	
+ 710:	00 09       	nop	
+ 712:	62 44       	mov.b	@r4+,r2
+ 714:	22 28       	tst	r2,r2
+ 716:	8b 02       	bf	71e <_strncmp+0x2c>
+ 718:	63 50       	mov.b	@r5,r3
+ 71a:	23 38       	tst	r3,r3
+ 71c:	89 06       	bt	72c <_strncmp+0x3a>
+ 71e:	41 10       	dt	r1
+ 720:	8f ed       	bf.s	6fe <_strncmp+0xc>
+ 722:	e0 00       	mov	#0,r0
+ 724:	00 0b       	rts	
+ 726:	00 09       	nop	
+ 728:	00 0b       	rts	
+ 72a:	e0 ff       	mov	#-1,r0
+ 72c:	00 0b       	rts	
+ 72e:	e0 00       	mov	#0,r0
+
+00000730 <_putc>:
+ 730:	2f 86       	mov.l	r8,@-r15
+ 732:	68 4c       	extu.b	r4,r8
+ 734:	60 83       	mov	r8,r0
+ 736:	88 0a       	cmp/eq	#10,r0
+ 738:	8f 04       	bf.s	744 <_putc+0x14>
+ 73a:	4f 22       	sts.l	pr,@-r15
+ 73c:	e4 00       	mov	#0,r4
+ 73e:	d0 05       	mov.l	754 <_putc+0x24>,r0	! 870 <_serial_send_byte>
+ 740:	40 0b       	jsr	@r0
+ 742:	e5 0d       	mov	#13,r5
+ 744:	e4 00       	mov	#0,r4
+ 746:	d0 03       	mov.l	754 <_putc+0x24>,r0	! 870 <_serial_send_byte>
+ 748:	40 0b       	jsr	@r0
+ 74a:	65 83       	mov	r8,r5
+ 74c:	4f 26       	lds.l	@r15+,pr
+ 74e:	68 f6       	mov.l	@r15+,r8
+ 750:	00 0b       	rts	
+ 752:	00 09       	nop	
+ 754:	00 00       	.word 0x0000
+ 756:	08 70       	.word 0x0870
+
+00000758 <_getc>:
+ 758:	2f 86       	mov.l	r8,@-r15
+ 75a:	4f 22       	sts.l	pr,@-r15
+ 75c:	d0 07       	mov.l	77c <_getc+0x24>,r0	! 908 <_serial_recv_byte>
+ 75e:	40 0b       	jsr	@r0
+ 760:	e4 00       	mov	#0,r4
+ 762:	88 0d       	cmp/eq	#13,r0
+ 764:	8f 01       	bf.s	76a <_getc+0x12>
+ 766:	68 03       	mov	r0,r8
+ 768:	e8 0a       	mov	#10,r8
+ 76a:	d0 05       	mov.l	780 <_getc+0x28>,r0	! 730 <_putc>
+ 76c:	40 0b       	jsr	@r0
+ 76e:	64 83       	mov	r8,r4
+ 770:	60 83       	mov	r8,r0
+ 772:	4f 26       	lds.l	@r15+,pr
+ 774:	68 f6       	mov.l	@r15+,r8
+ 776:	00 0b       	rts	
+ 778:	00 09       	nop	
+ 77a:	00 09       	nop	
+ 77c:	00 00       	.word 0x0000
+ 77e:	09 08       	.word 0x0908
+ 780:	00 00       	.word 0x0000
+ 782:	07 30       	.word 0x0730
+
+00000784 <_puts>:
+ 784:	2f 86       	mov.l	r8,@-r15
+ 786:	2f 96       	mov.l	r9,@-r15
+ 788:	4f 22       	sts.l	pr,@-r15
+ 78a:	68 43       	mov	r4,r8
+ 78c:	64 40       	mov.b	@r4,r4
+ 78e:	64 4c       	extu.b	r4,r4
+ 790:	24 48       	tst	r4,r4
+ 792:	89 07       	bt	7a4 <_puts+0x20>
+ 794:	78 01       	add	#1,r8
+ 796:	d9 06       	mov.l	7b0 <_puts+0x2c>,r9	! 730 <_putc>
+ 798:	49 0b       	jsr	@r9
+ 79a:	00 09       	nop	
+ 79c:	64 84       	mov.b	@r8+,r4
+ 79e:	64 4c       	extu.b	r4,r4
+ 7a0:	24 48       	tst	r4,r4
+ 7a2:	8b f9       	bf	798 <_puts+0x14>
+ 7a4:	e0 00       	mov	#0,r0
+ 7a6:	4f 26       	lds.l	@r15+,pr
+ 7a8:	69 f6       	mov.l	@r15+,r9
+ 7aa:	68 f6       	mov.l	@r15+,r8
+ 7ac:	00 0b       	rts	
+ 7ae:	00 09       	nop	
+ 7b0:	00 00       	.word 0x0000
+ 7b2:	07 30       	.word 0x0730
+
+000007b4 <_gets>:
+ 7b4:	2f 86       	mov.l	r8,@-r15
+ 7b6:	2f 96       	mov.l	r9,@-r15
+ 7b8:	2f a6       	mov.l	r10,@-r15
+ 7ba:	2f b6       	mov.l	r11,@-r15
+ 7bc:	2f c6       	mov.l	r12,@-r15
+ 7be:	4f 22       	sts.l	pr,@-r15
+ 7c0:	6c 43       	mov	r4,r12
+ 7c2:	6b 43       	mov	r4,r11
+ 7c4:	68 43       	mov	r4,r8
+ 7c6:	da 0c       	mov.l	7f8 <_gets+0x44>,r10	! 758 <_getc>
+ 7c8:	69 83       	mov	r8,r9
+ 7ca:	4a 0b       	jsr	@r10
+ 7cc:	39 b8       	sub	r11,r9
+ 7ce:	88 0a       	cmp/eq	#10,r0
+ 7d0:	89 05       	bt	7de <_gets+0x2a>
+ 7d2:	28 00       	mov.b	r0,@r8
+ 7d4:	20 08       	tst	r0,r0
+ 7d6:	8f f7       	bf.s	7c8 <_gets+0x14>
+ 7d8:	78 01       	add	#1,r8
+ 7da:	a0 04       	bra	7e6 <_gets+0x32>
+ 7dc:	60 93       	mov	r9,r0
+ 7de:	e1 00       	mov	#0,r1
+ 7e0:	60 93       	mov	r9,r0
+ 7e2:	0c 14       	mov.b	r1,@(r0,r12)
+ 7e4:	60 93       	mov	r9,r0
+ 7e6:	4f 26       	lds.l	@r15+,pr
+ 7e8:	6c f6       	mov.l	@r15+,r12
+ 7ea:	6b f6       	mov.l	@r15+,r11
+ 7ec:	6a f6       	mov.l	@r15+,r10
+ 7ee:	69 f6       	mov.l	@r15+,r9
+ 7f0:	68 f6       	mov.l	@r15+,r8
+ 7f2:	00 0b       	rts	
+ 7f4:	00 09       	nop	
+ 7f6:	00 09       	nop	
+ 7f8:	00 00       	.word 0x0000
+ 7fa:	07 58       	.word 0x0758
+
+000007fc <_putxval>:
+ 7fc:	4f 22       	sts.l	pr,@-r15
+ 7fe:	7f f4       	add	#-12,r15
+ 800:	66 43       	mov	r4,r6
+ 802:	e2 00       	mov	#0,r2
+ 804:	61 f3       	mov	r15,r1
+ 806:	71 08       	add	#8,r1
+ 808:	24 48       	tst	r4,r4
+ 80a:	8f 03       	bf.s	814 <_putxval+0x18>
+ 80c:	21 20       	mov.b	r2,@r1
+ 80e:	25 58       	tst	r5,r5
+ 810:	8b 00       	bf	814 <_putxval+0x18>
+ 812:	e5 01       	mov	#1,r5
+ 814:	61 f3       	mov	r15,r1
+ 816:	71 07       	add	#7,r1
+ 818:	d3 0e       	mov.l	854 <_putxval+0x58>,r3	! bf8
+ 81a:	a0 0b       	bra	834 <_putxval+0x38>
+ 81c:	e7 30       	mov	#48,r7
+ 81e:	e2 0f       	mov	#15,r2
+ 820:	22 69       	and	r6,r2
+ 822:	60 23       	mov	r2,r0
+ 824:	02 3c       	mov.b	@(r0,r3),r2
+ 826:	21 20       	mov.b	r2,@r1
+ 828:	46 09       	shlr2	r6
+ 82a:	25 58       	tst	r5,r5
+ 82c:	8d 01       	bt.s	832 <_putxval+0x36>
+ 82e:	46 09       	shlr2	r6
+ 830:	75 ff       	add	#-1,r5
+ 832:	71 ff       	add	#-1,r1
+ 834:	26 68       	tst	r6,r6
+ 836:	8f f2       	bf.s	81e <_putxval+0x22>
+ 838:	64 13       	mov	r1,r4
+ 83a:	25 58       	tst	r5,r5
+ 83c:	89 02       	bt	844 <_putxval+0x48>
+ 83e:	21 70       	mov.b	r7,@r1
+ 840:	af f7       	bra	832 <_putxval+0x36>
+ 842:	75 ff       	add	#-1,r5
+ 844:	d0 04       	mov.l	858 <_putxval+0x5c>,r0	! 784 <_puts>
+ 846:	40 0b       	jsr	@r0
+ 848:	74 01       	add	#1,r4
+ 84a:	e0 00       	mov	#0,r0
+ 84c:	7f 0c       	add	#12,r15
+ 84e:	4f 26       	lds.l	@r15+,pr
+ 850:	00 0b       	rts	
+ 852:	00 09       	nop	
+ 854:	00 00       	.word 0x0000
+ 856:	0b f8       	.word 0x0bf8
+ 858:	00 00       	.word 0x0000
+ 85a:	07 84       	mov.b	r8,@(r0,r7)
+
+0000085c <_serial_is_send_enable>:
+ 85c:	d1 03       	mov.l	86c <_serial_is_send_enable+0x10>,r1	! abcd0102
+ 85e:	60 10       	mov.b	@r1,r0
+ 860:	60 0e       	exts.b	r0,r0
+ 862:	40 21       	shar	r0
+ 864:	ca 01       	xor	#1,r0
+ 866:	00 0b       	rts	
+ 868:	c9 01       	and	#1,r0
+ 86a:	00 09       	nop	
+ 86c:	ab cd       	bra	a <_vectors+0xa>
+ 86e:	01 02       	stc	sr,r1
+
+00000870 <_serial_send_byte>:
+ 870:	2f 86       	mov.l	r8,@-r15
+ 872:	2f 96       	mov.l	r9,@-r15
+ 874:	2f a6       	mov.l	r10,@-r15
+ 876:	4f 22       	sts.l	pr,@-r15
+ 878:	69 43       	mov	r4,r9
+ 87a:	6a 5c       	extu.b	r5,r10
+ 87c:	d8 06       	mov.l	898 <_serial_send_byte+0x28>,r8	! 85c <_serial_is_send_enable>
+ 87e:	48 0b       	jsr	@r8
+ 880:	64 93       	mov	r9,r4
+ 882:	20 08       	tst	r0,r0
+ 884:	89 fb       	bt	87e <_serial_send_byte+0xe>
+ 886:	d1 05       	mov.l	89c <_serial_send_byte+0x2c>,r1	! abcd0103
+ 888:	21 a0       	mov.b	r10,@r1
+ 88a:	e0 00       	mov	#0,r0
+ 88c:	4f 26       	lds.l	@r15+,pr
+ 88e:	6a f6       	mov.l	@r15+,r10
+ 890:	69 f6       	mov.l	@r15+,r9
+ 892:	68 f6       	mov.l	@r15+,r8
+ 894:	00 0b       	rts	
+ 896:	00 09       	nop	
+ 898:	00 00       	.word 0x0000
+ 89a:	08 5c       	mov.b	@(r0,r5),r8
+ 89c:	ab cd       	bra	3a <_vectors+0x3a>
+ 89e:	01 03       	bsrf	r1
+
+000008a0 <_serial_is_recv_enable>:
+ 8a0:	d1 02       	mov.l	8ac <_serial_is_recv_enable+0xc>,r1	! abcd0102
+ 8a2:	60 10       	mov.b	@r1,r0
+ 8a4:	ca 01       	xor	#1,r0
+ 8a6:	00 0b       	rts	
+ 8a8:	c9 01       	and	#1,r0
+ 8aa:	00 09       	nop	
+ 8ac:	ab cd       	bra	4a <_vectors+0x4a>
+ 8ae:	01 02       	stc	sr,r1
+
+000008b0 <_serial_init>:
+ 8b0:	2f 86       	mov.l	r8,@-r15
+ 8b2:	2f 96       	mov.l	r9,@-r15
+ 8b4:	2f a6       	mov.l	r10,@-r15
+ 8b6:	4f 22       	sts.l	pr,@-r15
+ 8b8:	60 53       	mov	r5,r0
+ 8ba:	88 01       	cmp/eq	#1,r0
+ 8bc:	8f 07       	bf.s	8ce <_serial_init+0x1e>
+ 8be:	69 43       	mov	r4,r9
+ 8c0:	d2 0e       	mov.l	8fc <_serial_init+0x4c>,r2	! abcd0100
+ 8c2:	e1 02       	mov	#2,r1
+ 8c4:	22 10       	mov.b	r1,@r2
+ 8c6:	72 01       	add	#1,r2
+ 8c8:	22 10       	mov.b	r1,@r2
+ 8ca:	a0 0b       	bra	8e4 <_serial_init+0x34>
+ 8cc:	00 09       	nop	
+ 8ce:	d1 0b       	mov.l	8fc <_serial_init+0x4c>,r1	! abcd0100
+ 8d0:	e2 07       	mov	#7,r2
+ 8d2:	21 20       	mov.b	r2,@r1
+ 8d4:	71 01       	add	#1,r1
+ 8d6:	e2 0c       	mov	#12,r2
+ 8d8:	21 20       	mov.b	r2,@r1
+ 8da:	a0 03       	bra	8e4 <_serial_init+0x34>
+ 8dc:	00 09       	nop	
+ 8de:	61 a0       	mov.b	@r10,r1
+ 8e0:	a0 02       	bra	8e8 <_serial_init+0x38>
+ 8e2:	00 09       	nop	
+ 8e4:	d8 06       	mov.l	900 <_serial_init+0x50>,r8	! 8a0 <_serial_is_recv_enable>
+ 8e6:	da 07       	mov.l	904 <_serial_init+0x54>,r10	! abcd0103
+ 8e8:	48 0b       	jsr	@r8
+ 8ea:	64 93       	mov	r9,r4
+ 8ec:	20 08       	tst	r0,r0
+ 8ee:	8b f6       	bf	8de <_serial_init+0x2e>
+ 8f0:	4f 26       	lds.l	@r15+,pr
+ 8f2:	6a f6       	mov.l	@r15+,r10
+ 8f4:	69 f6       	mov.l	@r15+,r9
+ 8f6:	68 f6       	mov.l	@r15+,r8
+ 8f8:	00 0b       	rts	
+ 8fa:	00 09       	nop	
+ 8fc:	ab cd       	bra	9a <_vectors+0x9a>
+ 8fe:	01 00       	.word 0x0100
+ 900:	00 00       	.word 0x0000
+ 902:	08 a0       	.word 0x08a0
+ 904:	ab cd       	bra	a2 <_vectors+0xa2>
+ 906:	01 03       	bsrf	r1
+
+00000908 <_serial_recv_byte>:
+ 908:	2f 86       	mov.l	r8,@-r15
+ 90a:	2f 96       	mov.l	r9,@-r15
+ 90c:	4f 22       	sts.l	pr,@-r15
+ 90e:	69 43       	mov	r4,r9
+ 910:	d8 06       	mov.l	92c <_serial_recv_byte+0x24>,r8	! 8a0 <_serial_is_recv_enable>
+ 912:	48 0b       	jsr	@r8
+ 914:	64 93       	mov	r9,r4
+ 916:	20 08       	tst	r0,r0
+ 918:	89 fb       	bt	912 <_serial_recv_byte+0xa>
+ 91a:	d1 05       	mov.l	930 <_serial_recv_byte+0x28>,r1	! abcd0103
+ 91c:	60 10       	mov.b	@r1,r0
+ 91e:	60 0c       	extu.b	r0,r0
+ 920:	4f 26       	lds.l	@r15+,pr
+ 922:	69 f6       	mov.l	@r15+,r9
+ 924:	68 f6       	mov.l	@r15+,r8
+ 926:	00 0b       	rts	
+ 928:	00 09       	nop	
+ 92a:	00 09       	nop	
+ 92c:	00 00       	.word 0x0000
+ 92e:	08 a0       	.word 0x08a0
+ 930:	ab cd       	bra	ce <_vectors+0xce>
+ 932:	01 03       	bsrf	r1
+
+00000934 <_xmodem_recv>:
+ 934:	2f 86       	mov.l	r8,@-r15
+ 936:	2f 96       	mov.l	r9,@-r15
+ 938:	2f a6       	mov.l	r10,@-r15
+ 93a:	2f b6       	mov.l	r11,@-r15
+ 93c:	2f c6       	mov.l	r12,@-r15
+ 93e:	2f d6       	mov.l	r13,@-r15
+ 940:	2f e6       	mov.l	r14,@-r15
+ 942:	4f 22       	sts.l	pr,@-r15
+ 944:	7f f4       	add	#-12,r15
+ 946:	1f 42       	mov.l	r4,@(8,r15)
+ 948:	e0 01       	mov	#1,r0
+ 94a:	2f 02       	mov.l	r0,@r15
+ 94c:	e0 00       	mov	#0,r0
+ 94e:	1f 01       	mov.l	r0,@(4,r15)
+ 950:	ed 00       	mov	#0,r13
+ 952:	de 3d       	mov.l	a48 <_xmodem_recv+0x114>,r14	! fff87004 <_edata>
+ 954:	dc 3d       	mov.l	a4c <_xmodem_recv+0x118>,r12	! 8a0 <_serial_is_recv_enable>
+ 956:	2d d8       	tst	r13,r13
+ 958:	8b 17       	bf	98a <_xmodem_recv+0x56>
+ 95a:	61 e2       	mov.l	@r14,r1
+ 95c:	21 18       	tst	r1,r1
+ 95e:	89 02       	bt	966 <_xmodem_recv+0x32>
+ 960:	e9 64       	mov	#100,r9
+ 962:	a0 0a       	bra	97a <_xmodem_recv+0x46>
+ 964:	00 09       	nop	
+ 966:	d9 3a       	mov.l	a50 <_xmodem_recv+0x11c>,r9	! 2625a00
+ 968:	a0 07       	bra	97a <_xmodem_recv+0x46>
+ 96a:	00 09       	nop	
+ 96c:	38 93       	cmp/ge	r9,r8
+ 96e:	8f 06       	bf.s	97e <_xmodem_recv+0x4a>
+ 970:	e4 00       	mov	#0,r4
+ 972:	4a 0b       	jsr	@r10
+ 974:	e5 15       	mov	#21,r5
+ 976:	a0 02       	bra	97e <_xmodem_recv+0x4a>
+ 978:	e8 00       	mov	#0,r8
+ 97a:	da 36       	mov.l	a54 <_xmodem_recv+0x120>,r10	! 870 <_serial_send_byte>
+ 97c:	e8 00       	mov	#0,r8
+ 97e:	4c 0b       	jsr	@r12
+ 980:	e4 00       	mov	#0,r4
+ 982:	20 08       	tst	r0,r0
+ 984:	8d f2       	bt.s	96c <_xmodem_recv+0x38>
+ 986:	78 01       	add	#1,r8
+ 988:	78 ff       	add	#-1,r8
+ 98a:	d0 33       	mov.l	a58 <_xmodem_recv+0x124>,r0	! 908 <_serial_recv_byte>
+ 98c:	40 0b       	jsr	@r0
+ 98e:	e4 00       	mov	#0,r4
+ 990:	88 04       	cmp/eq	#4,r0
+ 992:	8f 06       	bf.s	9a2 <_xmodem_recv+0x6e>
+ 994:	88 18       	cmp/eq	#24,r0
+ 996:	e4 00       	mov	#0,r4
+ 998:	d0 2e       	mov.l	a54 <_xmodem_recv+0x120>,r0	! 870 <_serial_send_byte>
+ 99a:	40 0b       	jsr	@r0
+ 99c:	e5 06       	mov	#6,r5
+ 99e:	a0 46       	bra	a2e <_xmodem_recv+0xfa>
+ 9a0:	50 f1       	mov.l	@(4,r15),r0
+ 9a2:	8d 3a       	bt.s	a1a <_xmodem_recv+0xe6>
+ 9a4:	88 01       	cmp/eq	#1,r0
+ 9a6:	8f 33       	bf.s	a10 <_xmodem_recv+0xdc>
+ 9a8:	2d d8       	tst	r13,r13
+ 9aa:	7d 01       	add	#1,r13
+ 9ac:	d0 2a       	mov.l	a58 <_xmodem_recv+0x124>,r0	! 908 <_serial_recv_byte>
+ 9ae:	40 0b       	jsr	@r0
+ 9b0:	e4 00       	mov	#0,r4
+ 9b2:	61 03       	mov	r0,r1
+ 9b4:	60 f2       	mov.l	@r15,r0
+ 9b6:	30 10       	cmp/eq	r1,r0
+ 9b8:	8f 33       	bf.s	a22 <_xmodem_recv+0xee>
+ 9ba:	e4 00       	mov	#0,r4
+ 9bc:	d0 26       	mov.l	a58 <_xmodem_recv+0x124>,r0	! 908 <_serial_recv_byte>
+ 9be:	40 0b       	jsr	@r0
+ 9c0:	e4 00       	mov	#0,r4
+ 9c2:	61 f2       	mov.l	@r15,r1
+ 9c4:	20 1a       	xor	r1,r0
+ 9c6:	60 0c       	extu.b	r0,r0
+ 9c8:	92 3c       	mov.w	a44 <_xmodem_recv+0x110>,r2	! ff
+ 9ca:	30 20       	cmp/eq	r2,r0
+ 9cc:	8f 28       	bf.s	a20 <_xmodem_recv+0xec>
+ 9ce:	5b f2       	mov.l	@(8,r15),r11
+ 9d0:	90 39       	mov.w	a46 <_xmodem_recv+0x112>,r0	! 80
+ 9d2:	3b 0c       	add	r0,r11
+ 9d4:	58 f2       	mov.l	@(8,r15),r8
+ 9d6:	e9 00       	mov	#0,r9
+ 9d8:	da 1f       	mov.l	a58 <_xmodem_recv+0x124>,r10	! 908 <_serial_recv_byte>
+ 9da:	4a 0b       	jsr	@r10
+ 9dc:	e4 00       	mov	#0,r4
+ 9de:	28 00       	mov.b	r0,@r8
+ 9e0:	78 01       	add	#1,r8
+ 9e2:	39 0c       	add	r0,r9
+ 9e4:	38 b0       	cmp/eq	r11,r8
+ 9e6:	8f f8       	bf.s	9da <_xmodem_recv+0xa6>
+ 9e8:	69 9c       	extu.b	r9,r9
+ 9ea:	d0 1b       	mov.l	a58 <_xmodem_recv+0x124>,r0	! 908 <_serial_recv_byte>
+ 9ec:	40 0b       	jsr	@r0
+ 9ee:	e4 00       	mov	#0,r4
+ 9f0:	39 00       	cmp/eq	r0,r9
+ 9f2:	8f 15       	bf.s	a20 <_xmodem_recv+0xec>
+ 9f4:	61 f2       	mov.l	@r15,r1
+ 9f6:	71 01       	add	#1,r1
+ 9f8:	61 1c       	extu.b	r1,r1
+ 9fa:	2f 12       	mov.l	r1,@r15
+ 9fc:	50 f1       	mov.l	@(4,r15),r0
+ 9fe:	91 22       	mov.w	a46 <_xmodem_recv+0x112>,r1	! 80
+ a00:	30 1c       	add	r1,r0
+ a02:	1f 01       	mov.l	r0,@(4,r15)
+ a04:	e4 00       	mov	#0,r4
+ a06:	d0 13       	mov.l	a54 <_xmodem_recv+0x120>,r0	! 870 <_serial_send_byte>
+ a08:	40 0b       	jsr	@r0
+ a0a:	e5 06       	mov	#6,r5
+ a0c:	af a3       	bra	956 <_xmodem_recv+0x22>
+ a0e:	1f 82       	mov.l	r8,@(8,r15)
+ a10:	8d a2       	bt.s	958 <_xmodem_recv+0x24>
+ a12:	2d d8       	tst	r13,r13
+ a14:	e0 ff       	mov	#-1,r0
+ a16:	a0 09       	bra	a2c <_xmodem_recv+0xf8>
+ a18:	1f 01       	mov.l	r0,@(4,r15)
+ a1a:	e0 ff       	mov	#-1,r0
+ a1c:	a0 06       	bra	a2c <_xmodem_recv+0xf8>
+ a1e:	1f 01       	mov.l	r0,@(4,r15)
+ a20:	e4 00       	mov	#0,r4
+ a22:	d0 0c       	mov.l	a54 <_xmodem_recv+0x120>,r0	! 870 <_serial_send_byte>
+ a24:	40 0b       	jsr	@r0
+ a26:	e5 15       	mov	#21,r5
+ a28:	af 96       	bra	958 <_xmodem_recv+0x24>
+ a2a:	2d d8       	tst	r13,r13
+ a2c:	50 f1       	mov.l	@(4,r15),r0
+ a2e:	7f 0c       	add	#12,r15
+ a30:	4f 26       	lds.l	@r15+,pr
+ a32:	6e f6       	mov.l	@r15+,r14
+ a34:	6d f6       	mov.l	@r15+,r13
+ a36:	6c f6       	mov.l	@r15+,r12
+ a38:	6b f6       	mov.l	@r15+,r11
+ a3a:	6a f6       	mov.l	@r15+,r10
+ a3c:	69 f6       	mov.l	@r15+,r9
+ a3e:	68 f6       	mov.l	@r15+,r8
+ a40:	00 0b       	rts	
+ a42:	00 09       	nop	
+ a44:	00 ff       	mac.l	@r15+,@r0+
+ a46:	00 80       	.word 0x0080
+ a48:	ff f8       	.word 0xfff8
+ a4a:	70 04       	add	#4,r0
+ a4c:	00 00       	.word 0x0000
+ a4e:	08 a0       	.word 0x08a0
+ a50:	02 62       	.word 0x0262
+ a52:	5a 00       	mov.l	@(0,r0),r10
+ a54:	00 00       	.word 0x0000
+ a56:	08 70       	.word 0x0870
+ a58:	00 00       	.word 0x0000
+ a5a:	09 08       	.word 0x0908
+
+00000a5c <_elf_load>:
+ a5c:	2f 86       	mov.l	r8,@-r15
+ a5e:	2f 96       	mov.l	r9,@-r15
+ a60:	2f a6       	mov.l	r10,@-r15
+ a62:	2f b6       	mov.l	r11,@-r15
+ a64:	2f c6       	mov.l	r12,@-r15
+ a66:	2f d6       	mov.l	r13,@-r15
+ a68:	4f 22       	sts.l	pr,@-r15
+ a6a:	68 43       	mov	r4,r8
+ a6c:	d5 2c       	mov.l	b20 <_elf_load+0xc4>,r5	! c0c
+ a6e:	d0 2d       	mov.l	b24 <_elf_load+0xc8>,r0	! 64a <_memcmp>
+ a70:	40 0b       	jsr	@r0
+ a72:	e6 04       	mov	#4,r6
+ a74:	20 08       	tst	r0,r0
+ a76:	8f 3d       	bf.s	af4 <_elf_load+0x98>
+ a78:	61 83       	mov	r8,r1
+ a7a:	71 04       	add	#4,r1
+ a7c:	60 10       	mov.b	@r1,r0
+ a7e:	88 01       	cmp/eq	#1,r0
+ a80:	8f 3a       	bf.s	af8 <_elf_load+0x9c>
+ a82:	71 01       	add	#1,r1
+ a84:	60 10       	mov.b	@r1,r0
+ a86:	88 02       	cmp/eq	#2,r0
+ a88:	8f 38       	bf.s	afc <_elf_load+0xa0>
+ a8a:	71 01       	add	#1,r1
+ a8c:	60 10       	mov.b	@r1,r0
+ a8e:	88 01       	cmp/eq	#1,r0
+ a90:	8f 36       	bf.s	b00 <_elf_load+0xa4>
+ a92:	71 0a       	add	#10,r1
+ a94:	60 11       	mov.w	@r1,r0
+ a96:	88 02       	cmp/eq	#2,r0
+ a98:	8b 34       	bf	b04 <_elf_load+0xa8>
+ a9a:	50 85       	mov.l	@(20,r8),r0
+ a9c:	88 01       	cmp/eq	#1,r0
+ a9e:	8f 33       	bf.s	b08 <_elf_load+0xac>
+ aa0:	71 02       	add	#2,r1
+ aa2:	60 11       	mov.w	@r1,r0
+ aa4:	88 2a       	cmp/eq	#42,r0
+ aa6:	8f 31       	bf.s	b0c <_elf_load+0xb0>
+ aa8:	71 1a       	add	#26,r1
+ aaa:	61 11       	mov.w	@r1,r1
+ aac:	41 15       	cmp/pl	r1
+ aae:	8b 1f       	bf	af0 <_elf_load+0x94>
+ ab0:	e9 00       	mov	#0,r9
+ ab2:	6b 83       	mov	r8,r11
+ ab4:	7b 2a       	add	#42,r11
+ ab6:	dd 1c       	mov.l	b28 <_elf_load+0xcc>,r13	! 630 <_memcpy>
+ ab8:	dc 1c       	mov.l	b2c <_elf_load+0xd0>,r12	! 618 <_memset>
+ aba:	61 b1       	mov.w	@r11,r1
+ abc:	01 97       	mul.l	r9,r1
+ abe:	0a 1a       	sts	macl,r10
+ ac0:	51 87       	mov.l	@(28,r8),r1
+ ac2:	3a 1c       	add	r1,r10
+ ac4:	3a 8c       	add	r8,r10
+ ac6:	60 a2       	mov.l	@r10,r0
+ ac8:	88 01       	cmp/eq	#1,r0
+ aca:	8b 0b       	bf	ae4 <_elf_load+0x88>
+ acc:	55 a1       	mov.l	@(4,r10),r5
+ ace:	54 a3       	mov.l	@(12,r10),r4
+ ad0:	35 8c       	add	r8,r5
+ ad2:	4d 0b       	jsr	@r13
+ ad4:	56 a4       	mov.l	@(16,r10),r6
+ ad6:	51 a4       	mov.l	@(16,r10),r1
+ ad8:	54 a3       	mov.l	@(12,r10),r4
+ ada:	56 a5       	mov.l	@(20,r10),r6
+ adc:	34 1c       	add	r1,r4
+ ade:	e5 00       	mov	#0,r5
+ ae0:	4c 0b       	jsr	@r12
+ ae2:	36 18       	sub	r1,r6
+ ae4:	79 01       	add	#1,r9
+ ae6:	61 83       	mov	r8,r1
+ ae8:	71 2c       	add	#44,r1
+ aea:	61 11       	mov.w	@r1,r1
+ aec:	39 13       	cmp/ge	r1,r9
+ aee:	8b e4       	bf	aba <_elf_load+0x5e>
+ af0:	a0 0d       	bra	b0e <_elf_load+0xb2>
+ af2:	50 86       	mov.l	@(24,r8),r0
+ af4:	a0 0b       	bra	b0e <_elf_load+0xb2>
+ af6:	e0 00       	mov	#0,r0
+ af8:	a0 09       	bra	b0e <_elf_load+0xb2>
+ afa:	e0 00       	mov	#0,r0
+ afc:	a0 07       	bra	b0e <_elf_load+0xb2>
+ afe:	e0 00       	mov	#0,r0
+ b00:	a0 05       	bra	b0e <_elf_load+0xb2>
+ b02:	e0 00       	mov	#0,r0
+ b04:	a0 03       	bra	b0e <_elf_load+0xb2>
+ b06:	e0 00       	mov	#0,r0
+ b08:	a0 01       	bra	b0e <_elf_load+0xb2>
+ b0a:	e0 00       	mov	#0,r0
+ b0c:	e0 00       	mov	#0,r0
+ b0e:	4f 26       	lds.l	@r15+,pr
+ b10:	6d f6       	mov.l	@r15+,r13
+ b12:	6c f6       	mov.l	@r15+,r12
+ b14:	6b f6       	mov.l	@r15+,r11
+ b16:	6a f6       	mov.l	@r15+,r10
+ b18:	69 f6       	mov.l	@r15+,r9
+ b1a:	68 f6       	mov.l	@r15+,r8
+ b1c:	00 0b       	rts	
+ b1e:	00 09       	nop	
+ b20:	00 00       	.word 0x0000
+ b22:	0c 0c       	mov.b	@(r0,r0),r12
+ b24:	00 00       	.word 0x0000
+ b26:	06 4a       	.word 0x064a
+ b28:	00 00       	.word 0x0000
+ b2a:	06 30       	.word 0x0630
+ b2c:	00 00       	.word 0x0000
+ b2e:	06 18       	.word 0x0618
